@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Yuanzhe Hu</title>
-        <link>https://yuanzhehu.github.io/</link>
-        <description>Recent content on Yuanzhe Hu</description>
+        <title>Posts on Yuanzhe Hu</title>
+        <link>https://yuanzhehu.github.io/posts/</link>
+        <description>Recent content in Posts on Yuanzhe Hu</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sat, 15 Mar 2025 00:08:36 +0000</lastBuildDate><atom:link href="https://yuanzhehu.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 15 Mar 2025 00:08:36 +0000</lastBuildDate><atom:link href="https://yuanzhehu.github.io/posts/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>My First Post</title>
         <link>https://yuanzhehu.github.io/posts/my-first-post/</link>
         <pubDate>Sat, 15 Mar 2025 00:08:36 +0000</pubDate>
