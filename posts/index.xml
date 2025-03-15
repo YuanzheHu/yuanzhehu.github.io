@@ -5,12 +5,14 @@
         <link>https://yuanzhehu.github.io/posts/</link>
         <description>Recent content in Posts on Yuanzhe Hu</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language>
+        <language>en</language>
+        <managingEditor>yuanzhehu2024@gmail.com (Yuanzhe Hu)</managingEditor>
+        <webMaster>yuanzhehu2024@gmail.com (Yuanzhe Hu)</webMaster>
         <lastBuildDate>Sat, 15 Mar 2025 00:08:36 +0000</lastBuildDate><atom:link href="https://yuanzhehu.github.io/posts/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>My First Post</title>
         <link>https://yuanzhehu.github.io/posts/my-first-post/</link>
         <pubDate>Sat, 15 Mar 2025 00:08:36 +0000</pubDate>
-        
+        <author>yuanzhehu2024@gmail.com (Yuanzhe Hu)</author>
         <guid>https://yuanzhehu.github.io/posts/my-first-post/</guid>
         <description>&lt;p&gt;Hello, this is my first Hugo blog post!&lt;/p&gt;
 </description>

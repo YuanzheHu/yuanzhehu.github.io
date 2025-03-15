@@ -5,6 +5,8 @@
         <link>https://yuanzhehu.github.io/tags/</link>
         <description>Recent content in Tags on Yuanzhe Hu</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language><atom:link href="https://yuanzhehu.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+        <language>en</language>
+        <managingEditor>yuanzhehu2024@gmail.com (Yuanzhe Hu)</managingEditor>
+        <webMaster>yuanzhehu2024@gmail.com (Yuanzhe Hu)</webMaster><atom:link href="https://yuanzhehu.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     </channel>
 </rss>
