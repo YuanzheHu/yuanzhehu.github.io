@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on Yuanzhe Hu</title>
-        <link>http://localhost:1313/posts/</link>
+        <link>https://yuanzhehu.github.io/posts/</link>
         <description>Recent content in Posts on Yuanzhe Hu</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <managingEditor>yuanzhehu2024@gmail.com (Yuanzhe Hu)</managingEditor>
         <webMaster>yuanzhehu2024@gmail.com (Yuanzhe Hu)</webMaster>
-        <lastBuildDate>Sun, 27 Apr 2025 23:13:42 +0100</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 27 Apr 2025 23:13:42 +0100</lastBuildDate><atom:link href="https://yuanzhehu.github.io/posts/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Understanding Disjoint Set (Union-Find) in Python</title>
-        <link>http://localhost:1313/posts/firstpost/</link>
+        <link>https://yuanzhehu.github.io/posts/firstpost/</link>
         <pubDate>Sun, 27 Apr 2025 23:13:42 +0100</pubDate>
         <author>yuanzhehu2024@gmail.com (Yuanzhe Hu)</author>
-        <guid>http://localhost:1313/posts/firstpost/</guid>
+        <guid>https://yuanzhehu.github.io/posts/firstpost/</guid>
         <description>&lt;h1 id=&#34;understanding-disjoint-set-union-find-in-python&#34;&gt;Understanding Disjoint Set (Union-Find) in Python
 &lt;/h1&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;Disjoint Set, also known as &lt;strong&gt;Union-Find&lt;/strong&gt;, is a data structure that efficiently handles dynamic connectivity queries. It supports two key operations:&lt;/p&gt;
