@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="AI-Driven Weather Forecasting: Transforming Meteorology with Machine Learning Table of Contents Introduction Numerical Weather Prediction FourCastNet Pangu-Weather GraphCast Model Comparison Ethical Implications Conclusion References 1. Introduction: When AI Meets the Atmosphere Every day, weather forecasts quietly shape our lives. A storm warning can empty beaches and stock supermarket shelves. A temperature spike can shift energy demand across entire continents. In agriculture, aviation, disaster response, and climate science, accurate weather prediction isn&rsquo;t just useful—it’s vital.\n">
+<title>ELEC0139 Blog Post</title>
+
+<link rel='canonical' href='https://yuanzhehu.github.io/posts/blog-post/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="ELEC0139 Blog Post">
+<meta property='og:description' content="AI-Driven Weather Forecasting: Transforming Meteorology with Machine Learning Table of Contents Introduction Numerical Weather Prediction FourCastNet Pangu-Weather GraphCast Model Comparison Ethical Implications Conclusion References 1. Introduction: When AI Meets the Atmosphere Every day, weather forecasts quietly shape our lives. A storm warning can empty beaches and stock supermarket shelves. A temperature spike can shift energy demand across entire continents. In agriculture, aviation, disaster response, and climate science, accurate weather prediction isn&rsquo;t just useful—it’s vital.\n">
+<meta property='og:url' content='https://yuanzhehu.github.io/posts/blog-post/'>
+<meta property='og:site_name' content='Yuanzhe Hu'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2025-05-05T18:30:00&#43;08:00'/><meta property='article:modified_time' content='2025-05-05T18:30:00&#43;08:00'/>
+<meta name="twitter:title" content="ELEC0139 Blog Post">
+<meta name="twitter:description" content="AI-Driven Weather Forecasting: Transforming Meteorology with Machine Learning Table of Contents Introduction Numerical Weather Prediction FourCastNet Pangu-Weather GraphCast Model Comparison Ethical Implications Conclusion References 1. Introduction: When AI Meets the Atmosphere Every day, weather forecasts quietly shape our lives. A storm warning can empty beaches and stock supermarket shelves. A temperature spike can shift energy demand across entire continents. In agriculture, aviation, disaster response, and climate science, accurate weather prediction isn&rsquo;t just useful—it’s vital.\n">
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false}
+          ]
+        });"></script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_f509edb42ecc0ebd.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Yuanzhe Hu</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/posts/' >
+                
+                
+                
+                <span>Posts</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/categories/' >
+                
+                
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/tags/' >
+                
+                
+                
+                <span>Tags</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/posts/blog-post/">ELEC0139 Blog Post</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 05, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    21 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="ai-driven-weather-forecasting-transforming-meteorology-with-machine-learning">AI-Driven Weather Forecasting: Transforming Meteorology with Machine Learning
+</h1><h2 id="table-of-contents">Table of Contents
+</h2><ul>
+<li><a class="link" href="#1-introduction-when-ai-meets-the-atmosphere" >Introduction</a></li>
+<li><a class="link" href="#2-numerical-weather-prediction-foundations-evolution-and-grand-challenges" >Numerical Weather Prediction</a></li>
+<li><a class="link" href="#31-fourcastnet-a-dl-model-with-comparable-accuracy-to-ifs" >FourCastNet</a></li>
+<li><a class="link" href="#32-pangu-weather-a-vit-based-3d-weather-foundation-model" >Pangu-Weather</a></li>
+<li><a class="link" href="#33-graphcast-gnn-based-global-medium-range-weather-forecasting" >GraphCast</a></li>
+<li><a class="link" href="#34-model-comparison" >Model Comparison</a></li>
+<li><a class="link" href="#4-ethical-and-societal-implications" >Ethical Implications</a></li>
+<li><a class="link" href="#5-conclusion" >Conclusion</a></li>
+<li><a class="link" href="#6-references" >References</a></li>
+</ul>
+<h2 id="1-introduction-when-ai-meets-the-atmosphere">1. Introduction: When AI Meets the Atmosphere
+</h2><p>Every day, weather forecasts quietly shape our lives. A storm warning can empty beaches and stock supermarket shelves. A temperature spike can shift energy demand across entire continents. In <strong>agriculture</strong>, <strong>aviation</strong>, <strong>disaster response</strong>, and <strong>climate science</strong>, accurate weather prediction isn&rsquo;t just useful—it’s <strong>vital</strong>.</p>
+<p>For decades, <strong>Numerical Weather Prediction (NWP)</strong> has been the gold standard. These physics-based models simulate the Earth’s atmosphere by solving massive systems of <a class="link" href="https://en.wikipedia.org/wiki/Partial_differential_equation"  target="_blank" rel="noopener"
+    ><strong>partial differential equations</strong></a>. They are scientifically rigorous but also <strong>notoriously expensive</strong>—requiring supercomputers, hours of computation, and still falling short when it comes to fast-changing or extreme events.</p>
+<p>But a <strong>new kind of forecast</strong> is on the horizon. Fueled by advances in <a class="link" href="https://en.wikipedia.org/wiki/Deep_learning"  target="_blank" rel="noopener"
+    ><strong>deep learning</strong></a> and access to decades of <a class="link" href="https://www.ecmwf.int/en/forecasts/datasets/reanalysis-datasets/era5"  target="_blank" rel="noopener"
+    ><strong>reanalysis data</strong></a>, <strong>AI-based weather models</strong> are beginning to rival—and in some cases surpass—traditional systems. These models don’t simulate the laws of physics directly. Instead, they <strong>learn the behavior of the atmosphere</strong> from data, identifying patterns invisible even to trained meteorologists.</p>
+<p>In this blog, we dive into the rising frontier of <strong>AI-driven weather forecasting</strong>. We’ll explore leading-edge systems like <a class="link" href="https://www.deepmind.com/blog/graphcast-accurate-global-weather-forecasting-with-graph-neural-networks"  target="_blank" rel="noopener"
+    ><strong>GraphCast</strong></a>, <a class="link" href="https://www.huaweicloud.com/intl/en-us/news/20230720_01.html"  target="_blank" rel="noopener"
+    ><strong>Pangu-Weather</strong></a>, and <a class="link" href="https://arxiv.org/abs/2202.11214"  target="_blank" rel="noopener"
+    ><strong>FourCastNet</strong></a>—each pushing the boundaries of <strong>speed, resolution,</strong> and <strong>skill</strong>. Along the way, we’ll also examine the <strong>ethical challenges</strong> these models raise: fairness across regions, interpretability, public trust, and the role of humans in an increasingly automated forecasting landscape.</p>
+<p><strong>What happens when machine learning begins to understand the sky?</strong><br>
+Let’s find out.</p>
+<hr>
+<h2 id="2-numerical-weather-prediction-foundations-evolution-and-grand-challenges">2. Numerical Weather Prediction: Foundations, Evolution, and Grand Challenges
+</h2><p>For over 70 years, <strong>Numerical Weather Prediction (NWP)</strong> has served as the scientific foundation of operational forecasting. By solving <strong>partial differential equations (PDEs)</strong> based on the conservation of mass, momentum, energy, and moisture, NWP simulates atmospheric dynamics across the globe.</p>
+<h3 id="from-theory-to-operational-systems">From Theory to Operational Systems
+</h3><p>The idea of predicting weather via physics-based equations was introduced in the early 20th century by <a class="link" href="https://www.weather.gov/timeline/cleveland-abbe"  target="_blank" rel="noopener"
+    ><strong>Cleveland Abbe</strong></a> and <a class="link" href="https://www.britannica.com/biography/Vilhelm-Bjerknes"  target="_blank" rel="noopener"
+    ><strong>Vilhelm Bjerknes</strong></a>. Practical forecasting became feasible in 1950 when the first numerical hindcast was executed using the <a class="link" href="https://history.nasa.gov/computers/Ch4-2.html"  target="_blank" rel="noopener"
+    ><strong>ENIAC computer</strong></a> at Princeton University. Real-time forecasting began in 1954, and by 1979, the <a class="link" href="https://www.ecmwf.int/en/about/what-we-do/forecasting-system"  target="_blank" rel="noopener"
+    ><strong>ECMWF Integrated Forecasting System (IFS)</strong></a> was launched, setting a global standard for medium-range weather prediction.</p>
+<h3 id="how-nwp-works">How NWP Works
+</h3><p>Global NWP models divide the Earth into a <strong>three-dimensional grid</strong>, with horizontal resolution in latitude–longitude and vertical levels based on height or pressure. The evolution of atmospheric variables is calculated by numerically solving PDEs at each grid point.</p>
+<p align="center">
+  <img src="images/global_atmospheric_grid_model.png" alt="Schematic for Global Atmospheric Model" width="500"/>
+</p>
+<p><em>Structure of a global atmospheric model showing horizontal and vertical grids.<br>
+Image source: <a class="link" href="https://www.gfdl.noaa.gov/climate-modeling/"  target="_blank" rel="noopener"
+    >NOAA GFDL</a>.</em></p>
+<p>Modern systems like <a class="link" href="https://www.ecmwf.int/en/about/media-centre/news/2023/ecmwfs-new-cycle-48r1-forecast-upgrade"  target="_blank" rel="noopener"
+    ><strong>ECMWF’s IFS</strong></a> run:</p>
+<ul>
+<li>At 0.1° spatial resolution with ~2 million grid points</li>
+<li>With ~200 vertical levels</li>
+<li>Using 10-minute timesteps, twice daily, for 10-day forecasts</li>
+</ul>
+<p>Because the atmosphere is chaotic and sensitive to initial conditions, NWP employs <strong>ensemble forecasting</strong>. By running multiple simulations with slight variations in initial inputs, NWP systems generate a spread of possible outcomes, providing probabilistic information for decision-makers.</p>
+<figure style="text-align: center;">
+  <img src="./images/ensemble_forecasting_precipitation.png" alt="Ensemble forecasting and precipitation probability" style="zoom:85%;" />
+  <figcaption style="margin-top: 8px;">
+    <em>
+      Ensemble forecasting accounts for uncertainty by producing a range of forecasts.  
+      The resulting ensemble distribution can be used to calculate probabilities (e.g., for precipitation).  
+      Image source: <a href="https://www.nature.com/articles/nature14956" target="_blank">Nature, Palmer & Stevens (2015)</a>.
+    </em>
+  </figcaption>
+</figure>
+<p>NWP accuracy has improved significantly in recent decades, driven by better models, increased computing power, and improved data assimilation. Also, the prediction time has gradually increased from 3 days and 5 days to 7 days or even 10 days.</p>
+<figure style="text-align: center;">   <img src="./images/nwp_forecast_skill_over_time.png" alt="Forecast skill improvement over time" style="zoom:85%;" />   <figcaption style="margin-top: 8px;">     <em>       Forecast skill from 1981–2013 for 3-, 5-, 7-, and 10-day lead times.         Northern Hemisphere (NH) forecasts are consistently more accurate than those in the Southern Hemisphere (SH) due to denser observational coverage.         Source: ECMWF.     </em>   </figcaption> </figure>
+<h3 id="challenges-in-nwp">Challenges in NWP
+</h3><p>Despite its success, NWP is reaching computational and structural limits. Major challenges include:</p>
+<ol>
+<li><strong>Complexity</strong> – Earth system processes like turbulence, cloud microphysics, and ocean–atmosphere coupling are difficult to model accurately.</li>
+<li><strong>Resolution</strong> – Higher resolution improves accuracy but increases compute demands <strong>exponentially</strong>.</li>
+<li><strong>Dimensionality</strong> – Trillions of variables make simulations memory- and compute-intensive.</li>
+<li><strong>Ensemble Size</strong> – More ensemble members improve reliability but amplify cost.</li>
+<li><strong>Scenario Diversity</strong> – Climate models must simulate a wide range of possible futures (e.g., emissions paths).</li>
+<li><strong>Throughput</strong> – Real-time forecasting requires high-speed computing pipelines.</li>
+<li><strong>Scalability</strong> – As resolution increases, <strong>data movement</strong>, not computation, becomes the bottleneck.</li>
+<li><strong>Interactivity</strong> – Policymakers demand real-time, interactive “digital twins”—which traditional NWP systems struggle to support.</li>
+</ol>
+<h3 id="a-paradigm-shift-from-equations-to-data"><strong>A Paradigm Shift: From Equations to Data</strong>
+</h3><p>NWP’s equation-based precision is unmatched, but its <strong>scalability</strong> and <strong>computational demands</strong> are increasingly constrained. In response, a new wave of <strong>AI-based weather models</strong> is emerging—trained not to simulate physics explicitly, but to learn directly from decades of atmospheric data.</p>
+<p>Prominent examples include:</p>
+<ul>
+<li><a class="link" href="https://arxiv.org/abs/2202.11214"  target="_blank" rel="noopener"
+    ><strong>FourCastNet (2022)</strong></a> – by NVIDIA and Lawrence Berkeley National Lab</li>
+<li><a class="link" href="https://www.huaweicloud.com/intl/en-us/news/20230720_01.html"  target="_blank" rel="noopener"
+    ><strong>Pangu-Weather (2023)</strong></a> – by Huawei</li>
+<li><a class="link" href="https://www.science.org/doi/10.1126/science.adi2336"  target="_blank" rel="noopener"
+    ><strong>GraphCast (2023)</strong></a> – by Google DeepMind</li>
+</ul>
+<p>These models are trained on <a class="link" href="https://www.ecmwf.int/en/forecasts/datasets/reanalysis-datasets/era5"  target="_blank" rel="noopener"
+    ><strong>ERA5</strong></a> reanalysis and generate high-resolution global forecasts in <strong>seconds</strong>, using a fraction of the energy and hardware required by traditional numerical models. Their performance increasingly rivals—and sometimes exceeds—state-of-the-art NWP systems on key metrics like RMSE and anomaly correlation.</p>
+<p>What’s more, these models are now being operationally visualized and evaluated through the <a class="link" href="https://charts.ecmwf.int/"  target="_blank" rel="noopener"
+    ><strong>ECMWF AI Forecast Viewer</strong></a>, with direct access to their outputs:</p>
+<ul>
+<li><a class="link" href="https://charts.ecmwf.int/?query=FourCastNet"  target="_blank" rel="noopener"
+    >View FourCastNet Forecasts</a></li>
+<li><a class="link" href="https://charts.ecmwf.int/?query=PANGU"  target="_blank" rel="noopener"
+    >View Pangu-Weather Forecasts</a></li>
+<li><a class="link" href="https://charts.ecmwf.int/?query=GraphCast"  target="_blank" rel="noopener"
+    >View GraphCast Forecasts</a></li>
+</ul>
+<p>Together, these breakthroughs mark the emergence of a <strong>data-driven forecasting paradigm</strong>—faster, more efficient, and increasingly critical in a world shaped by climate extremes and the need for timely, actionable information.</p>
+<hr>
+<h2 id="3-state-of-the-art-ai-models-for-weather-forecasting">3. State-of-the-Art AI Models for Weather Forecasting
+</h2><h3 id="31-fourcastnet-a-dl-model-with-comparable-accuracy-to-ifs">3.1 FourCastNet: A DL model with comparable accuracy to IFS
+</h3><p><strong>FourCastNet</strong>, developed by NVIDIA, is a pioneering AI-driven global weather forecasting model that leverages deep learning and spectral methods to deliver high-resolution, medium-range forecasts. By integrating the <strong>Adaptive Fourier Neural Operator (AFNO)</strong> into its architecture, FourCastNet efficiently captures complex atmospheric patterns, offering rapid and accurate predictions that rival traditional numerical weather prediction models.</p>
+<h4 id="model-architecture">Model Architecture
+</h4><p>At the heart of <strong>FourCastNet</strong> is the <strong>Adaptive Fourier Neural Operator (AFNO)</strong>, a novel architecture designed to efficiently capture global weather patterns across space and time. AFNO extends the <strong>Fourier Neural Operator (FNO)</strong> by incorporating learnable adaptive filters in the frequency domain, enabling efficient and scalable modeling of complex geophysical phenomena.</p>
+<p>The diagram below (from <a class="link" href="https://arxiv.org/abs/2202.11214"  target="_blank" rel="noopener"
+    >FourCastNet: arXiv:2202.11214</a>) illustrates the complete architecture—from input preprocessing to spectral processing and output generation—along with extensions for fine-tuning and precipitation modeling.</p>
+<figure style="text-align: center;">
+  <img src="./images/FourCastNet.png" alt="FourCastNet AFNO architecture" style="zoom:85%;" />
+  <figcaption style="margin-top: 8px;">
+    <em>
+      Figure: (a) AFNO architecture with encoder–processor–decoder design.  
+      (b) Fine-tuning setup; (c) Precipitation model head using a frozen backbone; (d) Inference mode with autoregressive steps.  
+      FFT: Fast Fourier Transform, MLP: Multi-Layer Perceptron, IFFT: Inverse FFT.
+    </em>
+  </figcaption>
+</figure>
+<p>Traditional <strong>convolutional</strong> or <strong>attention-based models</strong> struggle to efficiently model <strong>long-range spatial dependencies</strong>. In contrast, <strong>AFNO</strong> operates in the <strong>frequency domain</strong> via <strong>Fast Fourier Transform (FFT)</strong>, enabling <strong>global mixing of spatial information</strong> at <strong>lower computational cost</strong>.</p>
+<p>The key steps in AFNO (refer to panel <strong>(a)</strong> in the figure) are:</p>
+<ol>
+<li>
+<p><strong>Patch &amp; Positional Embedding</strong>:</p>
+<p>The model ingests 2D meteorological fields (e.g., U₁₀, V₁₀, T₈₅₀, Z₅₀₀) as multi-channel tensors and embeds spatial information via patch-based position encodings.</p>
+</li>
+<li>
+<p><strong>Fourier Transform (FFT)</strong>:</p>
+<p>Data is projected into the frequency domain using 2D FFT, yielding complex-valued spectral features.</p>
+</li>
+<li>
+<p><strong>Block Diagonalization</strong>:</p>
+<p>Spectral channels are grouped into frequency blocks. This design reduces the dimensionality of mixing and enables efficient shared weight application.</p>
+</li>
+<li>
+<p><strong>Block-wise MLP Filtering</strong>:</p>
+<p>Each frequency block is passed through a shared MLP to perform adaptive frequency filtering. This is where <strong>AFNO differs from standard FNOs</strong>—weights are shared across blocks to encourage generalization.</p>
+</li>
+<li>
+<p><strong>Soft Shrinkage</strong>:</p>
+<p>A non-linear regularization step reduces the influence of insignificant frequency components, improving robustness.</p>
+</li>
+<li>
+<p><strong>Inverse FFT (IFFT)</strong>:</p>
+<p>The filtered spectral representation is transformed back to the spatial domain.</p>
+</li>
+<li>
+<p><strong>Residual Connection</strong>:</p>
+<p>The output is added to the input to preserve low-frequency structure and ensure stable gradients.</p>
+</li>
+</ol>
+<p>To make the process more concrete, the following pseudocode summarizes the AFNO computation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">AFNO</span>(x):
+</span></span><span style="display:flex;"><span>    bias <span style="color:#f92672">=</span> x                              <span style="color:#75715e"># Residual connection</span>
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> RFFT2(x)                          <span style="color:#75715e"># Step 2: Convert to frequency domain</span>
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>reshape(b, h, w<span style="color:#f92672">//</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, k, d<span style="color:#f92672">//</span>k)  <span style="color:#75715e"># Step 3: Block diagonalization</span>
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> BlockMLP(x)                       <span style="color:#75715e"># Step 4: Apply shared MLP</span>
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>reshape(b, h, w<span style="color:#f92672">//</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, d)        <span style="color:#75715e"># Restore shape</span>
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> SoftShrink(x)                    <span style="color:#75715e"># Step 5: Regularize</span>
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> IRFFT2(x)                         <span style="color:#75715e"># Step 6: Back to spatial domain</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x <span style="color:#f92672">+</span> bias                       <span style="color:#75715e"># Step 7: Residual connection</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">BlockMLP</span>(x):
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> MatMul(x, W_1) <span style="color:#f92672">+</span> b_1
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> ReLU(x)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> MatMul(x, W_2) <span style="color:#f92672">+</span> b_2
+</span></span></code></pre></div><h4 id="training-and-performance"><strong>Training and Performance</strong>
+</h4><p><strong>FourCastNet</strong> is trained in two stages—<strong>pretraining</strong> and <strong>fine-tuning</strong>—followed by the addition of a <strong>precipitation prediction module</strong>.</p>
+<ul>
+<li>
+<p><strong>Pretraining</strong>: The model first learns to forecast the immediate next atmospheric state based on current inputs. It is trained to minimize the difference (using mean squared error) between the predicted and actual next time step, focusing on single-step accuracy.</p>
+</li>
+<li>
+<p><strong>Fine-tuning</strong>: Next, the model is trained to make forecasts across multiple future steps in sequence. For example, it predicts the next two time steps, compares them to the actual values, and updates its weights to reduce the error across both. This helps the model reduce the buildup of errors over longer forecast sequences.</p>
+</li>
+<li>
+<p><strong>Precipitation Head</strong>: To improve rainfall forecasting, a separate component is added after the main model has been trained. This lightweight module takes the predicted atmospheric state and estimates rainfall, improving precipitation accuracy without changing the main model.</p>
+</li>
+</ul>
+<p>During inference, FourCastNet generates forecasts by recursively feeding each output back as input for the next prediction—starting from an initial observed state and producing a sequence of predictions several days into the future. This <strong>autoregressive</strong> design allows the model to generate <strong>efficient and coherent forecasts up to 7 to 10 days ahead</strong>.</p>
+<p>FourCastNet was benchmarked against ECMWF’s <strong>Integrated Forecasting System (IFS)</strong> using:</p>
+<ul>
+<li><strong>Anomaly Correlation Coefficient (ACC)</strong> – measures how well predicted anomaly patterns match observations.</li>
+<li><strong>Root Mean Squared Error (RMSE)</strong> – measures average forecast error.</li>
+</ul>
+<figure style="text-align: center;">
+  <img src="./images/FourCastNet_performence.png" alt="FourCastNet vs IFS Performance" style="zoom:80%;" />
+  <figcaption style="margin-top: 8px;">
+    <em>
+        Figure: Forecast skill comparison between IFS (blue), FourCastNet deterministic (red), and FourCastNet ensemble mean (purple).  
+        Top: Z500 geopotential height; Bottom: U10 wind speed at 10 meters.  
+        FourCastNet closely matches IFS accuracy, especially when ensemble averaging is used.
+    </em>
+  </figcaption>
+</figure>
+<p>Even though IFS slightly outperforms FourCastNet at long horizons, the <strong>ensemble mean</strong> version of FourCastNet significantly narrows the gap — highlighting its strong potential for <strong>probabilistic forecasting</strong> with a small computational footprint.</p>
+<h4 id="extreme-weather-prediction">Extreme Weather Prediction
+</h4><p><strong>FourCastNet</strong> has demonstrated strong performance in forecasting extreme weather events such as tropical cyclones and heavy rainfall. Its AFNO-based architecture, combined with autoregressive inference, enables the model to capture both large-scale atmospheric flow and localized severe phenomena.</p>
+<p>A compelling example is its multi-day forecast of <strong>Typhoon Mangkhut (山竹)</strong> in 2018. Using open-source tools from <a class="link" href="https://github.com/HFAiLab/FourCastNet"  target="_blank" rel="noopener"
+    >HFAI Lab</a>, researchers successfully reproduced the storm’s track and associated moisture fields. The model not only followed the cyclone trajectory with high accuracy, but also captured spiral structures in <strong>Total Column Water Vapour (TCWV)</strong>—a key indicator of cyclone intensity and rainfall potential.</p>
+<p>These results highlight FourCastNet’s potential for <strong>fast, high-resolution forecasting</strong> in early warning systems and disaster preparedness.</p>
+<figure style="text-align: center;">
+  <img src="./images/wind_small.gif" alt="Typhoon Mangkhut wind prediction"/>
+  <figcaption>
+    <em>Predicted wind field showing spiral structure of Typhoon Mangkhut</em>
+  </figcaption>
+</figure>
+<figure style="text-align: center;">
+  <img src="./images/precipitation_small.gif" alt="Typhoon Mangkhut precipitation prediction"/>
+  <figcaption>
+    <em>Forecasted precipitation and moisture distribution</em>
+  </figcaption>
+</figure>
+<hr>
+<h3 id="32-pangu-weather-a-vit-based-3d-weather-foundation-model">3.2 Pangu-Weather: A ViT-based 3D Weather Foundation Model
+</h3><p>Huawei Cloud’s <a class="link" href="https://www.huaweicloud.com/intl/en-us/news/20230720_01.html"  target="_blank" rel="noopener"
+    ><strong>Pangu-Weather</strong></a> marks a major milestone in AI-powered weather forecasting. It is the <strong>first publicly released model to outperform traditional numerical weather prediction (NWP)</strong> systems—such as the <a class="link" href="https://www.ecmwf.int/en/forecasts/dataset/ecmwf-high-resolution-forecasts"  target="_blank" rel="noopener"
+    >ECMWF’s High-Resolution (HRES)</a>—across the entire range of <strong>1-hour to 7-day forecasts</strong>, while achieving speeds <strong>over 10,000× faster</strong>.</p>
+<h4 id="model-design-and-architecture"><strong>Model Design and Architecture</strong>
+</h4><p>The strength of <strong>Pangu-Weather</strong> stems from a dual architectural innovation:</p>
+<ul>
+<li>A <strong>3D Earth-Specific Transformer (3DEST)</strong> optimized for atmospheric geospatial data.</li>
+<li>A <strong>Hierarchical Temporal Aggregation</strong> strategy that reduces error accumulation in multi-step forecasting.</li>
+</ul>
+<p>Combined, these elements allow Pangu-Weather to deliver <strong>accurate, stable, high-resolution forecasts</strong> at an unmatched speed—outpacing both traditional NWP systems and prior AI baselines.</p>
+<p><em><strong>Earth-Specific Transformer (3DEST)</strong></em></p>
+<p>The <strong>3DEST</strong> architecture is built on the insight that atmospheric data, while sharing structural similarities with image data (e.g., multi-channel, spatial continuity), exhibits domain-specific physical properties that demand specialized modeling.</p>
+<p>While earlier models like <a class="link" href="https://arxiv.org/abs/2202.11214"  target="_blank" rel="noopener"
+    >FourCastNet</a> used 2D neural architectures and struggled to model the Earth&rsquo;s complex, non-uniform 3D atmospheric structure, <strong>Pangu-Weather</strong> introduces a <strong>3D Vision Transformer</strong> tailored for meteorological data.</p>
+<figure style="text-align: center;">   <img src="./images/3DEST.png" style="zoom:50%;" />   <figcaption style="margin-top: 8px;"><em>3D Earth-Specific Transformer (3DEST) architecture diagram</em></figcaption> </figure>
+<p><strong>Key architectural features:</strong></p>
+<ul>
+<li><strong>Compact Encoder–Decoder Design</strong>: A lightweight 2-stage architecture with just 8 transformer blocks, balancing accuracy with efficiency.</li>
+<li><strong>Sliding Window Attention</strong>: Based on the <a class="link" href="https://arxiv.org/abs/2103.14030"  target="_blank" rel="noopener"
+    >Swin Transformer</a>, this mechanism captures local dependencies while reducing memory usage and FLOPs.</li>
+<li><strong>High-Resolution 3D Inputs</strong>: Despite optimizations, the model still processes over <strong>3000 GFLOPs</strong>, underscoring the computational demands of fine-grained global forecasts.</li>
+<li><strong>Earth-Specific Positional Encoding</strong>: Unlike standard image models, atmospheric data is tied to physical geolocation (latitude, longitude, altitude). Pangu introduces spatially-aware encodings that reflect:
+<ul>
+<li>Irregular grid spacing in latitude–longitude coordinates</li>
+<li>Latitude-dependent forces (e.g., Coriolis effect)</li>
+<li>Vertical variations in variables like pressure, temperature, and wind</li>
+</ul>
+</li>
+</ul>
+<figure style="text-align: center;">   <img src="./images/Earth-specific positional-bias.png" alt="Earth-specific positional bias" style="zoom:50%;" />   <figcaption style="margin-top: 8px;">     <em>Why Earth-specific positional encoding is needed — Left: The latitude–longitude grid on Earth is spatially non-uniform;      Center: Geopotential height strongly depends on both latitude and altitude;      Right: Wind speed and temperature correlate closely with vertical height.</em>   </figcaption> </figure>
+<p><em><strong>Hierarchical Temporal Aggregation</strong></em></p>
+<p>Medium-range forecasts (up to 7 days) often require <strong>dozens or even hundreds of recursive prediction steps</strong>. Traditional autoregressive models suffer from <strong>cumulative error amplification</strong> in these settings. For example:</p>
+<ul>
+<li><strong>FourCastNet</strong> uses 6-hour steps, requiring <strong>28 recursive calls</strong> for a 7-day forecast.</li>
+<li>A 1-hour model would require <strong>168 calls</strong>, increasing both training complexity and inference instability.</li>
+</ul>
+<p>To resolve this, Pangu-Weather introduces a <strong>Hierarchical Multi-Step Forecasting</strong> approach:</p>
+<ul>
+<li>Trains <strong>four specialized models</strong> for predicting intervals of <strong>1h, 3h, 6h, and 24h</strong>.</li>
+<li>During inference, a <strong>greedy scheduling algorithm</strong> selects the most efficient sequence of steps to minimize recursive depth.</li>
+<li>Example:
+<ul>
+<li><strong>24h forecast</strong> → 1 call to 24h model</li>
+<li><strong>23h forecast</strong> → 3 × 6h + 1 × 3h + 2 × 1h</li>
+</ul>
+</li>
+</ul>
+<figure style="text-align: center;">   <img src="./images/Screenshot 2025-05-03 at 23.46.20.png" alt="7-day forecast accuracy comparison" style="zoom:50%;" />   <figcaption style="margin-top: 8px;">     <em>Comparison of 7-day forecast accuracy across different baseline models.</em>   </figcaption> </figure>
+<p><strong>Benefits of this design:</strong></p>
+<ul>
+<li>Minimizes <strong>error accumulation</strong> across time steps.</li>
+<li>Allows for <strong>efficient training</strong> via single-timestep supervision.</li>
+<li>Reduces <strong>GPU memory requirements</strong>, improving training stability versus multi-timestep strategies used in models like FourCastNet.</li>
+</ul>
+<p>This design enables <strong>long-range AI forecasting to be more scalable, accurate, and efficient</strong>.</p>
+<h4 id="training-and-performance-1">Training and Performance
+</h4><p><strong>Pangu-Weather</strong> was trained on hourly <a class="link" href="https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5"  target="_blank" rel="noopener"
+    ><strong>ERA5 reanalysis data</strong></a> spanning <strong>1979 to 2021</strong>, making it one of the most data-rich AI weather models to date. Each variant of the model was trained for <strong>100 epochs</strong> using <strong>192 NVIDIA V100 GPUs</strong> over <strong>16 days</strong>. Notably, the model had <strong>not fully converged</strong> by the end of training—suggesting that additional compute or training time could unlock further performance improvements.</p>
+<p>Despite its compute-heavy training process, <strong>Pangu-Weather delivers forecasts at extraordinary speed</strong>. A full <strong>24-hour global forecast</strong> can be produced in just <strong>1.4 seconds</strong> on a single V100 GPU—making it <strong>over 10,000× faster</strong> than the <a class="link" href="https://www.ecmwf.int/en/forecasts/documentation-and-support/medium-range-forecasts"  target="_blank" rel="noopener"
+    ><strong>ECMWF&rsquo;s operational IFS system</strong></a>.</p>
+<p>For evaluation, Pangu-Weather was benchmarked against both IFS and FourCastNet using <a class="link" href="https://www.ecmwf.int/en/forecasts/datasets/reanalysis-datasets/era5"  target="_blank" rel="noopener"
+    ><strong>ERA5 test years</strong></a> (2018, 2020, 2021) and <strong>tropical cyclone tracks</strong> from the <a class="link" href="https://www.ncei.noaa.gov/products/international-best-track-archive"  target="_blank" rel="noopener"
+    ><strong>IBTrACS archive</strong></a>. Results revealed substantial gains:</p>
+<ul>
+<li>The <strong>3-day RMSE</strong> for 500 hPa geopotential height (<strong>Z500</strong>) dropped from <strong>152.8 (IFS)</strong> to <strong>134.5</strong>, and for 850 hPa temperature (<strong>T850</strong>) from <strong>1.37 K</strong> to <strong>1.14 K</strong>.</li>
+<li>These reductions translated into <strong>lead-time extensions</strong> of <strong>10–15 hours</strong> over IFS and up to <strong>36 hours</strong> over FourCastNet.</li>
+<li>At the surface, the <strong>2-meter temperature RMSE</strong> was reduced to <strong>1.05 K</strong>, outperforming both <strong>IFS (1.34 K)</strong> and <strong>FourCastNet (1.39 K)</strong>.</li>
+<li><strong>10-meter wind prediction errors</strong> were also reduced by <strong>over 20%</strong>.</li>
+</ul>
+<p>Unlike earlier AI models, which often produced coarse 6-hourly forecasts, <strong>Pangu-Weather offers hourly outputs</strong>, providing significantly better <strong>temporal resolution</strong>—critical for operational applications like nowcasting, disaster planning, and energy management.</p>
+<figure style="text-align: center;">   <img src="./images/pangu_forecast_comparison.png" alt="3-day forecast comparison" style="zoom:50%;" />   <figcaption style="margin-top: 8px;">     <em>       Visualization of 3-day forecasts by Pangu-Weather (top), operational IFS (middle), and ERA5 ground truth (bottom).<br>       Left: Z500 (500 hPa geopotential height). Right: T850 (850 hPa temperature).<br>       Forecast initialized at 00:00 UTC on September 1st, 2018.     </em>   </figcaption> </figure>
+<p>Beyond numerical gains, Pangu-Weather also produces <strong>visually smoother and more realistic atmospheric fields</strong>, closely mirroring the ERA5 ground truth in both structure and intensity—especially for key variables like <strong>Z500</strong> and <strong>T850</strong>.</p>
+<h4 id="extreme-weather-prediction-1"><strong>Extreme Weather Prediction</strong>
+</h4><p><strong>Pangu-Weather</strong> excels at forecasting extreme events, outperforming traditional models in both statistics and real-world accuracy. Using the <strong>Relative Quantile Error (RQE)</strong> metric, Pangu shows:</p>
+<ul>
+<li><strong>Less underestimation</strong> for Q500 (500 hPa specific humidity)</li>
+<li><strong>Comparable performance</strong> to ECMWF-HRES on U10 (10m wind)</li>
+<li><strong>Slightly weaker</strong> on U500 (500 hPa wind) at long ranges</li>
+</ul>
+<p>Overall, it <strong>outperforms FourCastNet</strong>, thanks to its hierarchical design that reduces long-term forecast drift.</p>
+<p>In cyclone tracking, Pangu was tested on <strong>88 tropical cyclones</strong> (2018) using <a class="link" href="https://www.ncei.noaa.gov/products/international-best-track-archive"  target="_blank" rel="noopener"
+    ><strong>IBTrACS</strong></a> and <a class="link" href="https://www.ecmwf.int/en/research/projects/tigge"  target="_blank" rel="noopener"
+    ><strong>TIGGE</strong></a>:</p>
+<ul>
+<li><strong>3-day track error</strong>: 120.3 km (vs. 162.3 km for ECMWF-HRES)</li>
+<li><strong>5-day track error</strong>: 195.6 km (vs. 272.1 km)</li>
+</ul>
+<p>Two case studies highlight Pangu’s precision:</p>
+<ul>
+<li><strong>Hurricane Michael (2018)</strong> – Landfall timing error: <strong>3 hrs</strong> (vs. <strong>18 hrs</strong> for ECMWF); better post-landfall tracking</li>
+<li><strong>Typhoon Ma-on (2022)</strong> – Correctly predicted landfall over <strong>Philippines and Maoming</strong>, while ECMWF missed the region</li>
+</ul>
+<figure style="text-align: center;">   <img src="./images/cyclone_tracking_comparison.png" alt="Cyclone forecast comparison by Pangu-Weather and ECMWF-HRES" style="zoom:50%;" />   <figcaption style="margin-top: 8px;">     <em>       Left: Cyclone eye tracking for Hurricane Michael (2018-10) and Typhoon Ma-on (2022-08) by Pangu-Weather and ECMWF-HRES, compared with ground truth from        <a href="https://www.ncei.noaa.gov/products/international-best-track-archive" target="_blank">IBTrACS</a>.<br>       Right: Illustration of the cyclone tracking process using Pangu-Weather forecasts. Cyclone centers are identified based on four key variables:        mean sea level pressure, 10 m wind speed, thickness between 850–200 hPa, and 850 hPa vorticity.        The displayed fields correspond to the 72-hour forecast, with cyclone eye positions indicated by arrow tails.     </em>   </figcaption> </figure>
+<hr>
+<h3 id="33-graphcast-gnn-based-global-medium-range-weather-forecasting"><strong>3.3 GraphCast: GNN-Based Global Medium-Range Weather Forecasting</strong>
+</h3><p>Launched by <strong>Google DeepMind</strong> in November 2023, <strong>GraphCast</strong> represents a significant leap in AI-driven global weather prediction. Using a <strong>Graph Neural Network (GNN)</strong> architecture, GraphCast models the Earth’s atmosphere as a structured, multi-scale graph, enabling it to capture both local interactions and global dynamics with unprecedented accuracy and efficiency.</p>
+<p>For full technical details, see the original <em>Science</em> publication:
+<a class="link" href="https://www.science.org/doi/10.1126/science.adi2336"  target="_blank" rel="noopener"
+    ><strong>Learning Skillful Medium-Range Global Weather Forecasting</strong></a></p>
+<h4 id="model-design-and-architecture-1"><strong>Model Design and Architecture</strong>
+</h4><p>At its core, GraphCast utilizes a <strong>multi-resolution icosahedral mesh</strong>, avoiding the pole distortion found in traditional latitude–longitude grids. The model follows a classic <strong>encoder–processor–decoder</strong> pipeline built entirely on a GNN framework.</p>
+<figure style="text-align: center;">   <img src="./images/graphcast_architecture.png" alt="GraphCast model architecture" style="zoom:90%;" />   <figcaption style="margin-top: 8px;">     <em>       GraphCast architecture: an encoder–processor–decoder pipeline over a multi-scale geodesic mesh.<br>       Panels (a–g) detail the input structure, autoregressive processing, and mesh refinement.     </em>   </figcaption> </figure>
+<p><strong>Key features include:</strong></p>
+<ul>
+<li><strong>Encoder:</strong> Converts 227 input variables (across 37 pressure levels) into graph node embeddings.</li>
+<li><strong>Processor:</strong> A <strong>16-layer GNN</strong> conducts message passing between nodes, capturing:
+<ul>
+<li><strong>Local-scale patterns</strong> (e.g., wind shear, convective systems)</li>
+<li><strong>Global-scale dynamics</strong> (e.g., jet streams, Rossby waves)</li>
+</ul>
+</li>
+<li><strong>Decoder:</strong> Translates graph outputs back into a structured forecast field.</li>
+</ul>
+<p>GraphCast employs <strong>multi-mesh message passing</strong> across seven levels (M⁰–M⁶), allowing it to represent atmospheric phenomena from planetary waves to tropical cyclones. The model forecasts autoregressively—predicting each timestep using outputs from the two prior steps (<em>t</em> and <em>t−1</em>)—ensuring temporal continuity and scalability.</p>
+<h4 id="training-and-performance-2">Training and Performance
+</h4><p>GraphCast was trained on <strong>39 years of ERA5 reanalysis data</strong> (1979–2017), using a <strong>weighted mean squared error (MSE)</strong> loss to balance contributions from its <strong>227 input variables</strong>. Training lasted around <strong>three weeks</strong> on <strong>32 Cloud TPU v4s</strong>, employing <strong>mixed-precision computation</strong> and <strong>gradient checkpointing</strong> to maximize efficiency. The model processes a global grid at <strong>0.25° resolution</strong> (~1 million spatial points per timestep) across <strong>37 vertical pressure levels</strong>.</p>
+<p>In benchmark testing across <strong>1,380 combinations</strong> of forecast variables, levels, and lead times, GraphCast <strong>outperformed ECMWF-HRES in over 90%</strong> of cases. Within the <strong>troposphere</strong>, its advantage rose to <strong>99.7%</strong>, showcasing its strong medium-range forecasting skill.</p>
+<p>When evaluated head-to-head with <a class="link" href="https://www.huaweicloud.com/intl/en-us/news/20230720_01.html"  target="_blank" rel="noopener"
+    ><strong>Pangu-Weather</strong></a>—using the same spatial resolution and forecast start times—GraphCast achieved better performance on <strong>99.2% of 252 benchmark metrics</strong>. It delivered <strong>10–20% lower RMSE</strong> on surface variables (like 2m temperature and 10m wind) in early forecasts, and retained a <strong>7–10% advantage</strong> at longer lead times. Pangu-Weather slightly edged out GraphCast on <strong>Z500 geopotential height</strong> at <strong>6–12-hour</strong> lead times, with differences under 2%.</p>
+<figure style="text-align: center;">   <img src="./images/pangu vs graphcast.png" alt="GraphCast vs Pangu-Weather RMSE comparison" style="zoom:50%;" />   <figcaption style="margin-top: 8px;">     <em>       RMSE comparison over 7-day forecasts.         GraphCast (blue) outperforms Pangu-Weather (red) across most variables, including <code>q500</code>, <code>t850</code>, <code>10u</code>, and <code>2t</code>.     </em>   </figcaption> </figure>
+<p>Importantly, DeepMind found that <strong>training with more recent data (through 2020)</strong> significantly improved model skill when tested on <strong>2021 conditions</strong>—especially in regions affected by <strong>climate variability</strong> (e.g., ENSO). This highlights a key advantage of AI models: their ability to <strong>adapt to changing climate baselines</strong> more easily than traditional, physics-constrained systems.</p>
+<h4 id="extreme-weather-prediction-2">Extreme Weather Prediction
+</h4><p>Accurately forecasting <strong>extreme weather events</strong>—including <strong>cyclones</strong>, <strong>heatwaves</strong>, and <strong>atmospheric rivers</strong>—has long challenged numerical models due to their fine-scale structure and sensitivity to global dynamics. GraphCast&rsquo;s architecture enables it to overcome many of these limitations.</p>
+<figure style="text-align: center;">   <img src="./images/severe-event-predction.png" alt="GraphCast Severe Weather Forecast Visualization" style="zoom:70%;" />   <figcaption style="margin-top: 8px;">     <em>       GraphCast improves predictions for extreme weather, including cyclones, IVT, and heat events.         Image source: <a href="https://www.science.org/doi/10.1126/science.adi2336" target="_blank">Science, 2023</a>.     </em>   </figcaption> </figure>
+<p><strong>Key findings from GraphCast’s Nature evaluation:</strong></p>
+<ul>
+<li><strong>Cyclone Tracking:</strong> Lower median track error than ECMWF-HRES at all lead times.</li>
+<li><strong>Atmospheric Rivers:</strong> More accurate prediction of <strong>Integrated Vapor Transport (IVT)</strong>—critical for rainfall and flood forecasting.</li>
+<li><strong>Extreme Heat:</strong> Better detection of high-temperature anomalies at 2 meters, with <strong>higher precision and recall</strong>.</li>
+</ul>
+<p>These results underscore GraphCast’s ability to <strong>bridge global and local weather patterns</strong>, making it a powerful tool for <strong>high-impact forecasting</strong>—with implications for disaster response, agriculture, and infrastructure planning.</p>
+<hr>
+<h3 id="34-model-comparison">3.4 Model Comparison
+</h3><p><strong>GraphCast</strong>, <strong>Pangu-Weather</strong>, and <strong>FourCastNet</strong> each represent a new generation of AI-powered weather forecasting tools. <strong>GraphCast</strong> leads in medium-range global prediction accuracy, <strong>Pangu-Weather</strong> balances speed with precision through hourly resolution, and <strong>FourCastNet</strong> excels in ultra-fast, ensemble-friendly forecasting. While each has its trade-offs, together they redefine what&rsquo;s possible beyond traditional numerical weather prediction.</p>
+<p><strong>Model Comparison Table</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>Feature</strong></th>
+          <th><strong>GraphCast</strong></th>
+          <th><strong>Pangu-Weather</strong></th>
+          <th><strong>FourCastNet</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Developer</strong></td>
+          <td>Google DeepMind</td>
+          <td>Huawei Cloud</td>
+          <td>NVIDIA</td>
+      </tr>
+      <tr>
+          <td><strong>Published</strong></td>
+          <td>Nov 2023 (<a class="link" href="https://www.science.org/doi/10.1126/science.adi2336"  target="_blank" rel="noopener"
+    ><em>Science</em></a>)</td>
+          <td>July 2023 (<a class="link" href="https://www.nature.com/articles/s41586-023-06385-1"  target="_blank" rel="noopener"
+    ><em>Nature</em></a>)</td>
+          <td>Aug 2022 (<a class="link" href="https://arxiv.org/abs/2202.11214"  target="_blank" rel="noopener"
+    ><em>arXiv</em></a>)</td>
+      </tr>
+      <tr>
+          <td><strong>GitHub</strong></td>
+          <td><a class="link" href="https://github.com/google-deepmind/graphcast"  target="_blank" rel="noopener"
+    >GraphCast</a></td>
+          <td><a class="link" href="https://github.com/198808xc/Pangu-Weather"  target="_blank" rel="noopener"
+    >Pangu-Weather</a></td>
+          <td><a class="link" href="https://github.com/NVlabs/FourCastNet"  target="_blank" rel="noopener"
+    >FourCastNet</a></td>
+      </tr>
+      <tr>
+          <td><strong>Architecture</strong></td>
+          <td>GNN</td>
+          <td>3D Transformer (3DEST)</td>
+          <td>Fourier Neural Operator (AFNO)</td>
+      </tr>
+      <tr>
+          <td><strong>Forecast Range</strong></td>
+          <td>10 days</td>
+          <td>10 days</td>
+          <td>7 days</td>
+      </tr>
+      <tr>
+          <td><strong>Resolution</strong></td>
+          <td>0.25°, 6-hour</td>
+          <td>0.25°, 1-hour</td>
+          <td>0.25°, 6-hour</td>
+      </tr>
+      <tr>
+          <td><strong>Speed</strong></td>
+          <td>&lt; 60s (10 days, TPU)</td>
+          <td>~1.4s (24h, 1 GPU)</td>
+          <td>&lt; 2s (7 days)</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><em><strong>Explore the Models on GitHub</strong></em></p>
+<ul>
+<li>
+<p><a class="link" href="https://github.com/google-deepmind/graphcast"  target="_blank" rel="noopener"
+    >GraphCast – google-deepmind/graphcast</a></p>
+</li>
+<li>
+<p><a class="link" href="https://github.com/198808xc/Pangu-Weather"  target="_blank" rel="noopener"
+    >Pangu-Weather – 198808xc/Pangu-Weather</a></p>
+</li>
+<li>
+<p><a class="link" href="https://github.com/NVlabs/FourCastNet"  target="_blank" rel="noopener"
+    >FourCastNet – NVlabs/FourCastNet</a></p>
+</li>
+</ul>
+<hr>
+<h3 id="4-ethical-and-societal-implications">4. Ethical and Societal Implications
+</h3><p>AI-driven forecasts influence decisions from immediate disaster warnings to long-term climate adaptation. Ensuring these systems serve all communities equitably, remain intelligible to stakeholders, and operate under robust governance is critical to their ethical deployment and societal acceptance.</p>
+<h4 id="41-regional-bias-and-global-fairness"><strong>4.1 Regional Bias and Global Fairness</strong>
+</h4><p>Most AI weather models are trained on rich observational archives in Europe and North America, leading to degraded performance in data-sparse regions such as sub-Saharan Africa or parts of South Asia. This imbalance threatens to widen gaps in resilience and disaster preparedness. To counteract it, researchers have proposed:</p>
+<ul>
+<li><strong>Regionally weighted loss functions</strong>, which penalize errors more heavily where data are scarce;</li>
+<li><strong>Domain adaptation and transfer learning</strong>, enabling models to generalize knowledge from well-observed to poorly observed settings;</li>
+<li><strong>Open, collaborative data sharing</strong>, to expand and diversify training datasets globally.</li>
+</ul>
+<p>Quantifying and correcting these disparities is the first step toward equitable AI forecasting</p>
+<blockquote>
+<p><em>Source:</em> <a class="link" href="https://doi.org/10.1175/bams-d-23-0196.1"  target="_blank" rel="noopener"
+    >McGovern et al., 2024</a></p></blockquote>
+<hr>
+<h4 id="42-explainability-and-interpretability"><strong>4.2 Explainability and Interpretability</strong>
+</h4><p>Deep neural networks can outperform traditional methods but often at the cost of opacity. In high-stakes contexts—such as issuing hurricane or flood warnings—stakeholders need to understand the rationale behind predictions. Key interpretability techniques include:</p>
+<ul>
+<li><strong>Saliency mapping and feature‐attribution methods</strong>, which highlight the input variables most influential to a forecast;</li>
+<li><strong>Physics‐informed neural networks</strong>, embedding known scientific relationships directly into model architectures;</li>
+<li><strong>Hybrid models</strong>, combining data-driven layers with conventional, physics-based forecast components.</li>
+</ul>
+<p>These approaches open the black box, enable expert vetting of model behavior, and help maintain trust in AI‐assisted decisions</p>
+<blockquote>
+<p><em>Sources:</em> <a class="link" href="https://doi.org/10.1038/s41586-019-0912-1"  target="_blank" rel="noopener"
+    >Reichstein et al., 2019</a>, <a class="link" href="https://doi.org/10.48550/arXiv.1708.08296"  target="_blank" rel="noopener"
+    >Samek et al., 2017</a></p></blockquote>
+<hr>
+<h4 id="43-accountability-and-governance"><strong>4.3 Accountability and Governance</strong>
+</h4><p>As AI systems are increasingly embedded in weather forecasting—especially for critical tasks like early warnings and disaster response—the question of <strong>who is responsible when predictions fail</strong> becomes essential. Without clear accountability, errors may be ignored, public trust erodes, and lives could be at risk.</p>
+<p>AI forecasts differ from traditional models because their decision processes can be opaque and decentralized. This makes assigning responsibility complex, yet necessary. Why does accountability matter?</p>
+<ul>
+<li>
+<p><strong>Forecast failures have real consequences</strong>:
+A missed storm warning or false alarm can lead to loss of life, economic damage, or public confusion.</p>
+</li>
+<li>
+<p><strong>AI systems involve multiple actors</strong>:</p>
+<ul>
+<li>Developers design and train the models</li>
+<li>Data providers supply inputs</li>
+<li>Agencies make operational decisions
+Without defined roles, each can deflect blame in case of failure.</li>
+</ul>
+</li>
+</ul>
+<p>To manage this, both legal and ethical frameworks are emerging:</p>
+<ul>
+<li>
+<p><strong>Legal mechanisms</strong>:
+The <strong>EU Artificial Intelligence Act (Regulation 2024/1689)</strong> is one of the first comprehensive efforts to govern high-risk AI applications. It mandates:</p>
+<ul>
+<li>Human oversight for critical systems</li>
+<li>Transparent documentation of model intent and limitations</li>
+<li>Auditability and performance monitoring</li>
+</ul>
+<p>These provisions aim to <strong>prevent accountability gaps</strong> and ensure systems are safe and trustworthy.</p>
+<blockquote>
+<p><em>Source:</em> <a class="link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj"  target="_blank" rel="noopener"
+    >AI Act, EUR-Lex</a></p></blockquote>
+</li>
+<li>
+<p><strong>Ethical frameworks</strong>:
+The <strong>IEEE Global Initiative</strong> promotes <em>Ethically Aligned Design</em>, a roadmap for responsible AI:</p>
+<ul>
+<li>
+<p>Inclusive stakeholder engagement in model development</p>
+</li>
+<li>
+<p>Clear communication of risks, trade-offs, and uncertainties</p>
+</li>
+<li>
+<p>Ethical guardrails to ensure alignment with public interest</p>
+</li>
+</ul>
+<blockquote>
+<p><em>Source:</em> <a class="link" href="https://standards.ieee.org/wp-content/uploads/import/documents/other/ead_v2.pdf"  target="_blank" rel="noopener"
+    >IEEE Ethically Aligned Design PDF</a></p></blockquote>
+</li>
+</ul>
+<h4 id="44-public-trust-and-human-oversight"><strong>4.4 Public Trust and Human Oversight</strong>
+</h4><p>Even highly accurate AI forecasts must operate within a human-in-the-loop framework. During emergencies, expert meteorologists remain indispensable for contextualizing model outputs and conveying uncertainty. To foster public confidence:</p>
+<ol>
+<li><strong>Transparency</strong>: Agencies should disclose model capabilities, training data coverage, and known limitations;</li>
+<li><strong>Accessible communication</strong>: Forecasts must be translated into clear, non-technical guidance;</li>
+<li><strong>Feedback mechanisms</strong>: Create channels for forecasters and users to report anomalies and improve models iteratively.</li>
+</ol>
+<p>The <strong>WMO’s 2023 Open Consultative Platform report</strong> emphasizes that AI should enhance—not replace—expert judgment in meteorology.</p>
+<blockquote>
+<p><em>Source:</em> <a class="link" href="https://wmo.int/sites/default/files/2023-08/OCP_Report_en.pdf"  target="_blank" rel="noopener"
+    >WMO OCP Report, 2023 (PDF)</a></p></blockquote>
+<hr>
+<h2 id="5-conclusion">5. Conclusion
+</h2><div align="justify">
+<p>The winds of change are sweeping through meteorology. Once dominated by physics-driven supercomputers, the field is now being reshaped by <strong>AI models</strong> trained on decades of atmospheric data. Innovations like <strong>GraphCast</strong>, <strong>Pangu-Weather</strong>, and <strong>FourCastNet</strong> are not only accelerating forecasts—they’re redefining the very language of weather prediction.</p>
+<p>Yet with this power comes profound responsibility. As we entrust AI with forecasting the storms of tomorrow, we must ensure that these systems are <strong>transparent</strong>, <strong>fair</strong>, and <strong>accountable</strong>. The future of climate communication depends not just on precision, but on public <strong>trust</strong> and <strong>ethical design</strong>.</p>
+<p>After all, in the eyes of these models, data is no longer abstract. It <strong>breathes</strong> with the heat of sunlit oceans, <strong>flows</strong> through the veins of jet streams, and <strong>rises</strong> with the pulse of pressure fronts. What once were just numbers on a grid are now <strong>living patterns</strong>—traces of storms, whispers of climate, and echoes of the world we call home.</p>
+<blockquote>
+<p>“This is more than a computational breakthrough.
+It’s a <strong>new way of listening to the Earth</strong>—and a <strong>shared responsibility to understand it wisely</strong>.”</p></blockquote>
+<hr>
+<h2 id="6-references">6. References
+</h2><ol>
+<li>Lam, R. et al. (2023). <em>Learning skillful medium-range global weather forecasting</em>. <strong>Science</strong>, 382(6676), 1140–1146.
+<a class="link" href="https://www.science.org/doi/10.1126/science.adi2336"  target="_blank" rel="noopener"
+    >https://www.science.org/doi/10.1126/science.adi2336</a></li>
+<li>Bi, K. et al. (2023). <em>Accurate and efficient global medium-range weather forecasting with 3D neural networks</em>. <strong>Nature</strong>, 620, 529–535.
+<a class="link" href="https://www.nature.com/articles/s41586-023-06385-1"  target="_blank" rel="noopener"
+    >https://www.nature.com/articles/s41586-023-06385-1</a></li>
+<li>Pathak, J. et al. (2022). <em>FourCastNet: A global data-driven high-resolution weather model using adaptive Fourier neural operators</em>. <strong>arXiv preprint</strong>.
+<a class="link" href="https://arxiv.org/abs/2202.11214"  target="_blank" rel="noopener"
+    >https://arxiv.org/abs/2202.11214</a></li>
+<li>ECMWF. <em>ERA5 Reanalysis Datasets</em>.
+<a class="link" href="https://www.ecmwf.int/en/forecasts/datasets/reanalysis-datasets/era5"  target="_blank" rel="noopener"
+    >https://www.ecmwf.int/en/forecasts/datasets/reanalysis-datasets/era5</a></li>
+<li>ECMWF. <em>Operational Medium-Range Forecasting System (IFS)</em>.
+<a class="link" href="https://www.ecmwf.int/en/forecasts/documentation-and-support/medium-range-forecasts"  target="_blank" rel="noopener"
+    >https://www.ecmwf.int/en/forecasts/documentation-and-support/medium-range-forecasts</a></li>
+<li>NOAA. <em>IBTrACS – International Best Track Archive for Climate Stewardship</em>.
+<a class="link" href="https://www.ncei.noaa.gov/products/international-best-track-archive"  target="_blank" rel="noopener"
+    >https://www.ncei.noaa.gov/products/international-best-track-archive</a></li>
+<li>ECMWF. <em>TIGGE – THORPEX Interactive Grand Global Ensemble Project</em>.
+<a class="link" href="https://www.ecmwf.int/en/research/projects/tigge"  target="_blank" rel="noopener"
+    >https://www.ecmwf.int/en/research/projects/tigge</a></li>
+<li>GitHub – GraphCast (Google DeepMind)
+<a class="link" href="https://github.com/google-deepmind/graphcast"  target="_blank" rel="noopener"
+    >https://github.com/google-deepmind/graphcast</a></li>
+<li>GitHub – Pangu-Weather (Huawei Cloud)
+<a class="link" href="https://github.com/198808xc/Pangu-Weather"  target="_blank" rel="noopener"
+    >https://github.com/198808xc/Pangu-Weather</a></li>
+<li>GitHub – FourCastNet (NVIDIA)
+<a class="link" href="https://github.com/NVlabs/FourCastNet"  target="_blank" rel="noopener"
+    >https://github.com/NVlabs/FourCastNet</a></li>
+<li>McGovern, A. et al. (2021). <em>The Need for Ethical, Responsible, and Trustworthy Artificial Intelligence for Environmental Sciences</em>. <strong>arXiv</strong>.
+<a class="link" href="https://arxiv.org/abs/2112.08453"  target="_blank" rel="noopener"
+    >https://arxiv.org/abs/2112.08453</a></li>
+<li>Ethics in Climate AI (2024). <em>PLOS Climate</em>.
+<a class="link" href="https://journals.plos.org/climate/article?id=10.1371/journal.pclm.0000061"  target="_blank" rel="noopener"
+    >https://journals.plos.org/climate/article?id=10.1371/journal.pclm.0000061</a></li>
+<li>AI Weather Forecasts and Public Reliance (2025). <em>Sustainability Directory</em>.
+<a class="link" href="https://sustainability-directory.org/ai-weather-forecasting"  target="_blank" rel="noopener"
+    >https://sustainability-directory.org/ai-weather-forecasting</a></li>
+<li>QL Space (2025). <em>The Ethics of AI and Satellite Data in Weather Forecasting</em>.
+<a class="link" href="https://www.qlspace.com/news/the-ethics-of-ai-and-satellite-data-in-weather-forecasting"  target="_blank" rel="noopener"
+    >https://www.qlspace.com/news/the-ethics-of-ai-and-satellite-data-in-weather-forecasting</a></li>
+<li>Chen, R. et al. (2023). <em>Identifying and Categorizing Bias in AI/ML for Earth Sciences</em>. <strong>Bulletin of the American Meteorological Society</strong>.
+<a class="link" href="https://journals.ametsoc.org/view/journals/bams/104/2/BAMS-D-21-0286.1.xml"  target="_blank" rel="noopener"
+    >https://journals.ametsoc.org/view/journals/bams/104/2/BAMS-D-21-0286.1.xml</a></li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 Yuanzhe Hu
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

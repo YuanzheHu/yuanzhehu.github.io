@@ -2,17 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:54941/posts/</loc>
+    <loc>https://yuanzhehu.github.io/posts/blog-post/</loc>
+    <lastmod>2025-05-05T18:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://yuanzhehu.github.io/posts/</loc>
+    <lastmod>2025-05-05T18:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://yuanzhehu.github.io/posts/firstpost/</loc>
     <lastmod>2025-04-27T23:13:42+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:54941/posts/firstpost/</loc>
-    <lastmod>2025-04-27T23:13:42+01:00</lastmod>
+    <loc>https://yuanzhehu.github.io/categories/</loc>
   </url><url>
-    <loc>http://localhost:54941/</loc>
-    <lastmod>2025-04-27T23:13:42+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:54941/categories/</loc>
-  </url><url>
-    <loc>http://localhost:54941/tags/</loc>
+    <loc>https://yuanzhehu.github.io/tags/</loc>
   </url>
 </urlset>
