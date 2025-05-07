@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on Yuanzhe Hu</title>
-        <link>https://yuanzhehu.github.io/posts/</link>
+        <link>http://localhost:1313/posts/</link>
         <description>Recent content in Posts on Yuanzhe Hu</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <managingEditor>yuanzhehu2024@gmail.com (Yuanzhe Hu)</managingEditor>
         <webMaster>yuanzhehu2024@gmail.com (Yuanzhe Hu)</webMaster>
-        <lastBuildDate>Mon, 05 May 2025 18:30:00 +0800</lastBuildDate><atom:link href="https://yuanzhehu.github.io/posts/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 05 May 2025 18:30:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>ELEC0139 Blog Post</title>
-        <link>https://yuanzhehu.github.io/posts/blog-post/</link>
+        <link>http://localhost:1313/posts/blog-post/</link>
         <pubDate>Mon, 05 May 2025 18:30:00 +0800</pubDate>
         <author>yuanzhehu2024@gmail.com (Yuanzhe Hu)</author>
-        <guid>https://yuanzhehu.github.io/posts/blog-post/</guid>
+        <guid>http://localhost:1313/posts/blog-post/</guid>
         <description>&lt;h1 id=&#34;ai-driven-weather-forecasting-transforming-meteorology-with-machine-learning&#34;&gt;AI-Driven Weather Forecasting: Transforming Meteorology with Machine Learning
 &lt;/h1&gt;&lt;h2 id=&#34;table-of-contents&#34;&gt;Table of Contents
 &lt;/h2&gt;&lt;ul&gt;
@@ -197,16 +197,7 @@ Image source: &lt;a class=&#34;link&#34; href=&#34;https://www.gfdl.noaa.gov/cli
 &lt;li&gt;&lt;strong&gt;Anomaly Correlation Coefficient (ACC)&lt;/strong&gt; – measures how well predicted anomaly patterns match observations.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Root Mean Squared Error (RMSE)&lt;/strong&gt; – measures average forecast error.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;figure style=&#34;text-align: center;&#34;&gt;
-  &lt;img src=&#34;./images/FourCastNet_performence.png&#34; alt=&#34;FourCastNet vs IFS Performance&#34; style=&#34;zoom:80%;&#34; /&gt;
-  &lt;figcaption style=&#34;margin-top: 8px;&#34;&gt;
-    &lt;em&gt;
-        Figure: Forecast skill comparison between IFS (blue), FourCastNet deterministic (red), and FourCastNet ensemble mean (purple).  
-        Top: Z500 geopotential height; Bottom: U10 wind speed at 10 meters.  
-        FourCastNet closely matches IFS accuracy, especially when ensemble averaging is used.
-    &lt;/em&gt;
-  &lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;figure style=&#34;text-align: center;&#34;&gt; &lt;img src=&#34;./images/FourCastNet_performence.png&#34; alt=&#34;FourCastNet vs IFS Performance&#34; style=&#34;zoom:80%;&#34; /&gt; &lt;figcaption style=&#34;margin-top: 8px;&#34;&gt; &lt;em&gt; Figure: Forecast skill comparison across IFS (blue), FourCastNet deterministic (red), and FourCastNet ensemble mean (purple). Top row: 500 hPa geopotential height (Z500); Bottom row: 10-meter wind speed (U10). Left: ACC; Right: RMSE. Higher ACC and lower RMSE indicate better performance. &lt;/em&gt; &lt;/figcaption&gt; &lt;/figure&gt;
 &lt;p&gt;Even though IFS slightly outperforms FourCastNet at long horizons, the &lt;strong&gt;ensemble mean&lt;/strong&gt; version of FourCastNet significantly narrows the gap — highlighting its strong potential for &lt;strong&gt;probabilistic forecasting&lt;/strong&gt; with a small computational footprint.&lt;/p&gt;
 &lt;h4 id=&#34;extreme-weather-prediction&#34;&gt;Extreme Weather Prediction
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;FourCastNet&lt;/strong&gt; has demonstrated strong performance in forecasting extreme weather events such as tropical cyclones and heavy rainfall. Its AFNO-based architecture, combined with autoregressive inference, enables the model to capture both large-scale atmospheric flow and localized severe phenomena.&lt;/p&gt;
@@ -590,10 +581,10 @@ It’s a &lt;strong&gt;new way of listening to the Earth&lt;/strong&gt;—and a 
         </item>
         <item>
         <title>Understanding Disjoint Set (Union-Find) in Python</title>
-        <link>https://yuanzhehu.github.io/posts/firstpost/</link>
+        <link>http://localhost:1313/posts/firstpost/</link>
         <pubDate>Sun, 27 Apr 2025 23:13:42 +0100</pubDate>
         <author>yuanzhehu2024@gmail.com (Yuanzhe Hu)</author>
-        <guid>https://yuanzhehu.github.io/posts/firstpost/</guid>
+        <guid>http://localhost:1313/posts/firstpost/</guid>
         <description>&lt;h1 id=&#34;understanding-disjoint-set-union-find-in-python&#34;&gt;Understanding Disjoint Set (Union-Find) in Python
 &lt;/h1&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;Disjoint Set, also known as &lt;strong&gt;Union-Find&lt;/strong&gt;, is a data structure that efficiently handles dynamic connectivity queries. It supports two key operations:&lt;/p&gt;
